@@ -1,0 +1,30 @@
+.container1
+{
+    display: flex;
+
+}
+.rec1
+{
+ width: 300px;
+ height: 100px;
+ background-color: red;
+ border-radius: 15px;
+ border: 2px double green;
+ margin: 0 auto 0 0;
+}
+.rec2
+{
+    width: 300px;
+ height: 100px;
+ background-color: green;
+ border-radius: 30px 70px 40px 20px;
+ margin: 0 auto;
+}
+.rec3
+{
+    width: 300px;
+ height: 100px;
+ background: blue;
+ border-radius: 50px 15px;
+ margin: 0 0 0 auto;
+}
