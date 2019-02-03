@@ -37,32 +37,67 @@
       document.getElementById('task').value=userInputNumber;
         }
     }
+    /*Косинус*/
     function cos()
     {
         var cosnumber = document.form.textview.value;
         document.form.textview.value = Math.cos(cosnumber);
     }
+    /*Десятичный логарифм*/
     function log10()
     {
         var lognumber = document.form.textview.value;
         document.form.textview.value = Math.log10(lognumber);
     }
+    /*Модуль числа*/
     function abs()
     {
         var absnumber = document.form.textview.value;
         document.form.textview.value = Math.abs(absnumber);
     }
+    /*Двоичное в десятичное*/
     function Transl10()
     {
         var binary = document.form.textview.value;
         var digit = parseInt(binary,2);
         document.form.textview.value = digit;
     }
+    /*Перевод числа из десятичной системы счисления в восьмеричную*/
     function Transl8()
     {
-        var digit = document.form.textview.value;
-        var number8 = parseInt(digit,8);
+        var digit = +document.form.textview.value;
+        var number8 = digit.toString(8);
         document.form.textview.value = number8;
+    }
+    function proverkaText(input)
+    {
+        /*ограничение на ввод русских букв*/
+        var value = input.value;
+        var repRus = /[а-яА-Я]/;
+        var repEng = /[a-zA-Z]/;
+        var repDot = /[\-/,;":'*-+$%^&()#@!]/
+        if (repRus.test(value))
+        {
+            value = value.replace(repRus, ''); 
+            input.value = value;
+        }
+        /*ограничение на ввод английских букв*/
+        else if(repEng.test(value))
+        {
+            value=value.replace(repEng,'');
+            input.value=value;
+        }
+        /*ограничение на ввод спец. знаков*/
+        else if(repDot.test(value))
+        {
+            value=value.replace(repDot,'');
+            input.value=value;
+        }
+        /*ограничение на ввод двух точек*/
+        else if(input.value.match(/\./g).length>1)
+        {
+            input.value = input.value.substr(0, input.value.lastIndexOf("."));
+        }
     }
 </script>
 
@@ -105,7 +140,7 @@
         <div class="bg"></div>
 <div class="main">
     <form name ="form">
-        <input class="textview" name="textview">
+        <input class="textview" name="textview" type="text" onkeyup="return proverkaText(this);" >
     </form>
     <table>
         <tr>
