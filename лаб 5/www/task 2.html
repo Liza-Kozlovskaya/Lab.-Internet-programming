@@ -21,23 +21,23 @@
         <center><h2>Форма для регистрации участников </h2></center>
         <form action="test2.php" autocomplete="on" method=POST>     
              Имя: <br><input type="text" name="first_name" autofocus required><br>    
-             Фамилия: <br><input type="text" name="last_name" autofocus required><br>     
-             E-mail: <br><input type="email" name="email" autofocus required><br> 
-             Возраст: <br><input type="number" name="age" min="15" autofocus required><br>
+             Фамилия: <br><input type="text" name="last_name"  required><br>     
+             E-mail: <br><input type="email" name="email"  required><br> 
+             Возраст: <br><input type="number" name="age" min="15"  required><br>
              <p>Выберите ваш пол:</p>
-                 <input type="radio" name="gender" value="Female" required>Female<br>
+                 <input type="radio" name="gender" value="Female" checked required>Female<br>
                  <input type="radio" name="gender" value="Male" required>Male<br>
              <p> Выберите язык, который вы бы хотели изучать:</p>        
-                  <input type="checkbox" name="language[]" value="English"autofocus>English<br>        
-                  <input type="checkbox" name="language[]" value="French" autofocus >French<br>         
-                  <input type="checkbox" name="language[]" value="German" autofocus>German<br>         
-                  <input type="checkbox" name="language[]" value="Italian" autofocus>Italian<br> 
-                  <input type="checkbox" name="language[]" value="Portuguese" autofocus>Portuguese<br>   
-                  <input type="checkbox" name="language[]" value="Spanish" autofocus>Spanish<br>   
-                  <input type="checkbox" name="language[]" value="Russian" autofocus>Russian<br>   
-                  <input type="checkbox" name="language[]" value="Chinese" autofocus>Chinese<br>       
+                  <input type="checkbox" name="language[]" value="English">English<br>        
+                  <input type="checkbox" name="language[]" value="French"  >French<br>         
+                  <input type="checkbox" name="language[]" value="German" >German<br>         
+                  <input type="checkbox" name="language[]" value="Italian" >Italian<br> 
+                  <input type="checkbox" name="language[]" value="Portuguese" >Portuguese<br>   
+                  <input type="checkbox" name="language[]" value="Spanish" >Spanish<br>   
+                  <input type="checkbox" name="language[]" value="Russian" >Russian<br>   
+                  <input type="checkbox" name="language[]" value="Chinese" >Chinese<br>       
                   <p>Укажите дополнительную информацию</p>         
-                  <textarea name="comment" cols=40 rows=7 autofocus></textarea>
+                  <textarea name="comment" cols=40 rows=7 ></textarea>
                   </br>         
                   <input type=submit value="Отправить">         
                   <input type=reset value="Отменить"> 
