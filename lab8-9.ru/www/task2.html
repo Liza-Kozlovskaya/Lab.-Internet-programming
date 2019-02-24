@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <style>
+            input:valid 
+            {
+                 border-color: green;
+            }
+
+            input:invalid 
+            {
+                border-color: red;
+            }
+            form
+            {
+                text-align: center;
+                position: fixed; top: 10%; left: 39%;
+            }
+        </style>
+    </head>
+    <body>
+        <center><h2>Форма-анкета для заполнения личных данных начинающего писателя </h2></center>
+        <form action="task2.php" autocomplete="on" method=POST>     
+             Имя: <br><input type="text" name="first_name" autofocus required><br>    
+             Фамилия: <br><input type="text" name="last_name"  required><br>     
+             Псевдоним: <br><input type="text" name="nickname"  required><br> 
+             Дата Рождения: <br><input type="date" name="data_of_birth"  required><br>
+             Жанр: <br><input type="text" name="genre_work"  required><br>
+                  <p>Укажите отрывок собственного произведения</p>         
+                  <textarea name="work" cols=45 rows=10 ></textarea>
+                  </br>         
+                  <input type=submit value="Отправить">         
+                  <input type=reset value="Отменить"> 
+        </form> 
+    </body>
+</html>
