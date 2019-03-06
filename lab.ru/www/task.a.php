@@ -5,10 +5,17 @@
 <body>
    <?php
         $string = ($_POST['comment']);
-        $stringedit = preg_replace('/^\W*(.+?)\W*$/', '$1', $string);
-        echo $stringedit;
-        $str = explode(" ",$string);
+        $str = explode(" ", $string);
+         print_r($str);
 
+         $val = current($str);
+         print "<table border=3>";
+         while ($val)
+         {
+            print "<tr> <td> $val </td> ";
+            $val = next ( $str );
+         }
+         print "</table>";
    ?> 
 </body>
 </html>
