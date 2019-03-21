@@ -1,0 +1,114 @@
+<html>
+<head>
+ <script>
+
+     // функция проверки строки на пустоту
+    function valid(str) 
+    {
+        if (str.trim() && str.length != 0)
+        return true;
+        return false;
+    }
+
+    // функция вычисления
+    function calc() 
+    {
+        var number1 = document.getElementById("ch1").value;
+        var number2 = document.getElementById("ch2").value;
+ 
+    // проверяем числа ли ввели и на непустые строки
+        if ((!isNaN(number1)) && (!isNaN(number2)) && valid(number1) && valid(number2)) {
+        number1 = Number(number1);
+        number2 = Number(number2);
+        var znak = document.getElementById("znak").value;
+        if (znak == "+") 
+        {
+            alert(number1 + number2);
+            document.getElementById('ch3').value = (number1 + number2);
+        }
+        else if (znak == "-") 
+        {
+            alert(number1 - number2);
+            document.getElementById('ch3').value = (number1 - number2);
+        }
+        else if (znak == "*") 
+        {
+            alert(number1 * number2);
+            document.getElementById('ch3').value = (number1 * number2);
+        }
+        else if (number2 != 0) 
+        {
+            alert(number1 / number2);
+            document.getElementById('ch3').value = (number1 / number2);
+        }
+        else 
+        {
+            alert("Деление на ноль!");
+        }
+    }
+    else 
+    {
+        alert("Некорректный ввод!");
+    }
+ }
+
+     function task1()
+    {
+        var number = prompt('Введите число', '0');
+        if(number == null)
+        {
+            alert('Вы не указали число');
+        }
+        else
+        {
+            alert('Вы ввели число '+number+'')
+            ch1.value = ch1.value+number;
+            var userInputNumber = number;
+            document.getElementById('task11').value=userInputNumber;
+        }
+    }
+    function task2()
+    {
+        var number = prompt('Введите число', '0');
+        if(number == null)
+        {
+            alert('Вы не указали число');
+        }
+        else
+        {
+            alert('Вы ввели число '+number+'')
+            ch2.value = ch2.value+number;
+            var userInputNumber = number;
+            document.getElementById('task22').value=userInputNumber;
+        }
+    }
+ </script>
+</head>
+<body>
+<h1>Калькулятор</h1>
+<form>
+ <label>Введите первое число</label>
+ <input type="number" id="ch1" autofocus> 
+ <input class="button" style="background: greenyellow" id="task11"  type="button" value="prompt"onclick="task1()">
+ <br>
+ <label>Введите второе число</label>
+ <input type="number" id="ch2">
+ <input class="button" style="background: greenyellow" id="task22"  type="button" value="prompt"onclick="task2()">
+ <br>
+ <label>Выберите операцию</label>
+ <select id="znak">
+ <option name="sum">+</option>
+ <option name="raz">-</option>
+ <option name="mul">*</option>
+ <option name="div">/</option>
+ </select>
+ <br>
+ <label>Результат</label>
+ <input type="number" id="ch3">
+ <br>
+ <input type="button" value="Результат" onclick="calc();">
+ <br>
+ <input type="reset" value="Очистить">
+</form>
+</body>
+</html>

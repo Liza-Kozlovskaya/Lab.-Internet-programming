@@ -3,8 +3,13 @@
 <script>
     function insert(num)
     {
-        document.form.textview.value=document.form.textview.value+num;
+        document.form.textview.value=document.form.textview.value+num;    
+        /*if(document.form.textview.value.match(/\./g).length>1)
+        {
+            document.form.textview.value = document.form.textview.value.substr(0, document.form.textview.value.lastIndexOf("."));
+        }*/
     }
+
     function equal()
     {
         var exp=document.form.textview.value;
@@ -91,9 +96,8 @@
     function Transl10()
     {
         var binary = document.form.textview.value;
-        var digit = parseInt(binary,2);
-        document.form.textview.value = digit;
-        if(isNaN(digit) || isFinite(digit))
+        var digit = parseInt(binary, 2);
+        if(isNaN(digit))
         {
             document.form.textview.value = "Error";
         }
