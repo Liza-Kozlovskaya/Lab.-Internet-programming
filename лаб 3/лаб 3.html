@@ -3,11 +3,90 @@
 <script>
     function insert(num)
     {
-        document.form.textview.value=document.form.textview.value+num;    
-        /*if(document.form.textview.value.match(/\./g).length>1)
+        if(num === "-")
         {
-            document.form.textview.value = document.form.textview.value.substr(0, document.form.textview.value.lastIndexOf("."));
-        }*/
+            if(document.form.textview.value.slice(-1) === '-')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '+')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '*')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '/')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+        }
+        if(num === "+")
+        {
+            if(document.form.textview.value.slice(-1) === '-')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '+')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '*')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '/')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+        }
+        if(num === "*")
+        {
+            if(document.form.textview.value.slice(-1) === '-')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '+')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '*')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '/')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+        }
+        if(num === "/")
+        {
+            if(document.form.textview.value.slice(-1) === '-')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '+')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '*')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            if(document.form.textview.value.slice(-1) === '/')
+            {
+                document.form.textview.value = document.form.textview.value.slice(0, -1);
+            }
+            else
+            {
+                document.form.textview.value=document.form.textview.value+num;
+            }
+        }
+        else
+        {
+            document.form.textview.value=document.form.textview.value+num;
+        }
     }
 
     function equal()
