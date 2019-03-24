@@ -1,4 +1,4 @@
-# &#x1F535 Lab.-Internet-programming
+# Lab.-Internet-programming
 
 # Lab2
 ### task1
