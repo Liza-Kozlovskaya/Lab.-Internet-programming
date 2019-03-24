@@ -9,56 +9,68 @@
         
         $first_name = ($_POST['first_name']);
         $last_name = ($_POST['last_name']);
-        //делим текст по пробелам и создаём массив слов
-        $work = ($_POST['work']);
-        $editwork =explode(' ',$work);
-        //разбиваем массив на 2 части
-        //ceil переводит нечётный элемент в 1 массив
-        $editwork=array_chunk($editwork,ceil(count($editwork)/2));
-        //print_r($editwork);
-        $array1 = count($editwork[0]);
-        $array2 = count($editwork[1]);
-        if($array1>$array2)
-        {
-            echo "Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
-        }
-        else
-        {
-            echo "Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
-        }
 
-        /*******************************************************************/
-        echo "Первая часть: $array1 слов.</br>";
-        echo "Вторая часть: $array2 слов.</br>";
-        print_r($editwork);
-        $a = iconv_strlen($work);
-        echo "</br> Количество всех символов: $a. </br>";
-        echo "Делим текст на 2 части по символам: ";
-        $b= str_split($work, $a/2);
-        print_r($b);
+        $work = ($_POST['work']);
+        $a = iconv_strlen($work); //количество символов в тексте
+        echo "</br> <strong>Количество всех символов: $a</strong> </br>";
+        echo "<strong>Делим текст на 2 части по символам:</strong> </br> ";
+        $b= str_split($work, ceil($a/2));
+        //print_r($b);
         $ar1 = $b[0];
         $ar2 = $b[1];
-        echo "</br> Первая часть текста: ";
+
+        echo "</br> <strong> Первая часть текста:</strong> ";
         print_r($ar1);
-        echo "</br> Количество символов в первой части: ";
-        $conv1 = iconv_strlen($ar1);
+        echo "</br> <strong> Количество символов в первой части: </strong> ";
+        $conv1 = iconv_strlen($ar1); /*Возвращает количество символов в строке */
         print_r($conv1);
-        echo "</br> Вторая часть текста:";
+        echo "</br>";
+        echo "</br> <strong> Вторая часть текста: </strong>";
         echo $ar2;
-        echo "</br> Количество символов во второй части: ";
-        $conv2 = iconv_strlen($ar2);
+        echo "</br> <strong> Количество символов во второй части: </strong>";
+        $conv2 = iconv_strlen($ar2); /*Возвращает количество символов в строке */
         echo $conv2;
-        $part1 = count($ar1);
-        $part2 = count($ar2);
-        if($part1>$part2 or $part1<$part2)
+        echo "</br>";
+
+        //; , . | / * - + ^ : ' '
+        $txt1 = preg_split("/\\*((?:[^\\\\*]|\\\\.)*)/", $ar1);
+        $txt2 = preg_split("/\\*((?:[^\\\\*]|\\\\.)*)/", $ar2);
+
+
+        $txt1ed = count($txt1);//Количество слов 
+        $txt2ed = count($txt2);
+
+        echo "</br> <strong> Количество слов в первой части: </strong>";
+        print_r($txt1ed);
+        echo "</br> <strong> Количество слов во второй части: </strong>";
+        print_r($txt2ed);
+        echo "</br>";
+
+        if($txt1ed > $txt2ed)
         {
-            echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
+            $a=$txt1ed - $txt2ed;
+            if(abs($a %2) == 0)
+            {
+                echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
+            }
+            else
+            {
+                echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
+            }
+            
         }
         else
         {
-            echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
+            $a=$txt2ed - $txt1ed;
+            if(abs($a %2) == 0)
+            {
+                echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
+            }
+            else
+            {
+                echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
+            }
         }
-
     ?>
 </body>
 </html>
