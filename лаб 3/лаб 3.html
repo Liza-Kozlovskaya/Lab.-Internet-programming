@@ -1,120 +1,58 @@
 <html>
-    <header>
-<script>
-    function insert(num)
+<head>
+ <script>
+
+     // функция проверки строки на пустоту
+    function valid(str) 
     {
-        if(num === "-")
-        {
-            if(document.form.textview.value.slice(-1) === '-')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '+')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '*')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '/')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-        }
-        if(num === "+")
-        {
-            if(document.form.textview.value.slice(-1) === '-')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '+')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '*')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '/')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-        }
-        if(num === "*")
-        {
-            if(document.form.textview.value.slice(-1) === '-')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '+')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '*')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '/')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-        }
-        if(num === "/")
-        {
-            if(document.form.textview.value.slice(-1) === '-')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '+')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '*')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            if(document.form.textview.value.slice(-1) === '/')
-            {
-                document.form.textview.value = document.form.textview.value.slice(0, -1);
-            }
-            else
-            {
-                document.form.textview.value=document.form.textview.value+num;
-            }
-        }
-        else
-        {
-            document.form.textview.value=document.form.textview.value+num;
-        }
+        if (str.trim() && str.length != 0)
+        return true;
+        return false;
     }
 
-    function equal()
+    // функция вычисления
+    function calc() 
     {
-        var exp=document.form.textview.value;
-        if(exp)
+        var number1 = document.getElementById("ch1").value;
+        var number2 = document.getElementById("ch2").value;
+ 
+    // проверяем числа ли ввели и на непустые строки
+        if ((!isNaN(number1)) && (!isNaN(number2)) && valid(number1) && valid(number2)) {
+        number1 = Number(number1);
+        number2 = Number(number2);
+        var znak = document.getElementById("znak").value;
+        if (znak == "+") 
         {
-            if(isFinite(eval(exp)))
-            {
-                document.form.textview.value=eval(exp);
-            }
-            else
-            {
-                document.form.textview.value="Error";
-            }
-            
+            alert(number1 + number2);
+            document.getElementById('ch3').value = (number1 + number2);
+        }
+        else if (znak == "-") 
+        {
+            alert(number1 - number2);
+            document.getElementById('ch3').value = (number1 - number2);
+        }
+        else if (znak == "*") 
+        {
+            alert(number1 * number2);
+            document.getElementById('ch3').value = (number1 * number2);
+        }
+        else if (number2 != 0) 
+        {
+            alert(number1 / number2);
+            document.getElementById('ch3').value = (number1 / number2);
+        }
+        else 
+        {
+            alert("Деление на ноль!");
         }
     }
-    function clean()
+    else 
     {
-        document.form.textview.value="";
+        alert("Некорректный ввод!");
     }
-    function back()
-    {
-        var exp=document.form.textview.value;
-        document.form.textview.value =exp.substring(0,exp.length-1);
-    }
-    function task1()
+ }
+
+     function task1()
     {
         var number = prompt('Введите число', '0');
         if(number == null)
@@ -124,192 +62,53 @@
         else
         {
             alert('Вы ввели число '+number+'')
-            document.form.textview.value =document.form.textview.value+number;
-            
+            ch1.value = ch1.value+number;
             var userInputNumber = number;
-            document.getElementById('task').value=userInputNumber;
+            document.getElementById('task11').value=userInputNumber;
         }
     }
-    /*Косинус*/
-    function cos()
+    function task2()
     {
-        var cosnumber = document.form.textview.value;
-        var cos = Math.cos(cosnumber);
-        if(isNaN(cos))
+        var number = prompt('Введите число', '0');
+        if(number == null)
         {
-            document.form.textview.value = "Error";
+            alert('Вы не указали число');
         }
         else
         {
-            document.form.textview.value = cos;
+            alert('Вы ввели число '+number+'')
+            ch2.value = ch2.value+number;
+            var userInputNumber = number;
+            document.getElementById('task22').value=userInputNumber;
         }
     }
-    /*Десятичный логарифм*/
-    function log10()
-    {
-        var lognumber = document.form.textview.value;
-        var log10 =  Math.log10(lognumber);
-        if(isNaN(log10))
-        {
-            document.form.textview.value = "Error";
-        }
-        else
-        {
-            document.form.textview.value = log10;
-        }
-    }
-    /*Модуль числа*/
-    function abs()
-    {
-        var absnumber = document.form.textview.value;
-        if(isNaN(Math.abs(absnumber)))
-        {
-            document.form.textview.value = "Error";
-        }
-        else
-        {
-            document.form.textview.value = Math.abs(absnumber);
-        }
-    }
-    /*Двоичное в десятичное*/
-    function Transl10()
-    {
-        var binary = document.form.textview.value;
-        var digit = parseInt(binary, 2);
-        if(isNaN(digit))
-        {
-            document.form.textview.value = "Error";
-        }
-        else
-        {
-            document.form.textview.value = digit;
-        }
-    }
-    /*Перевод числа из десятичной системы счисления в восьмеричную*/
-    function Transl8()
-    {
-        var digit = +document.form.textview.value;
-        var number8 = digit.toString(8);
-        if(isNaN(number8))
-        {
-            document.form.textview.value = "Error";
-        }
-        else
-        {
-            document.form.textview.value = number8;
-        } 
-    }
-    function proverkaText(input)
-    {
-        
-        var value = input.value;
-        var repRus = /[а-яА-Я]/;
-        var repEng = /[a-zA-Z]/;
-        var repDot = /[\-/,;":'*-+$%^&()#@!]/
-
-        /*ограничение на ввод русских букв*/
-        if (repRus.test(value))
-        {
-            value = value.replace(repRus, ''); 
-            input.value = value;
-        }
-        /*ограничение на ввод английских букв*/
-        else if(repEng.test(value))
-        {
-            value=value.replace(repEng,'');
-            input.value=value;
-        }
-        /*ограничение на ввод спец. знаков*/
-        else if(repDot.test(value))
-        {
-            value=value.replace(repDot,'');
-            input.value=value;
-        }
-        /*ограничение на ввод двух точек*/
-        else if(input.value.match(/\./g).length>1)
-        {
-            input.value = input.value.substr(0, input.value.lastIndexOf("."));
-        }
-    }
-</script>
-
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    .button
-    {
-        width: 62;
-        height: 62;
-        font-size: 15;
-        margin: 2;
-    }
-    .textview
-    {
-        widows: 220;
-        margin: 5;
-        font-size: 27;
-        padding: 3;
-    }
-    .main
-    {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        background: lightsteelblue;
-    }
-    .bg
-    {
-        background:linear-gradient(to right, lime, lightblue);
-        height: 100%;
-        
-    }
-</style>
-    </header>
-    <body>
-        <div class="bg"></div>
-<div class="main">
-    <form name ="form">
-        <input class="textview" name="textview" type="text" onkeyup="return proverkaText(this);" >
-    </form>
-    <table>
-        <tr>
-            <td><input class="button" style="background: lightgreen" type="button" value="C" onclick="clean()"></td>
-            <td><input class="button" type="button" value="<" onclick="back()"></td>
-            <td><input class="button" type="button" value="/"onclick="insert('/')"></td>
-            <td><input class="button" type="button" value="*"onclick="insert('*')"></td>
-            <td ><input class="button" style="background: lawngreen"  type="button" value="cos"onclick="cos()"></td>
-        </tr>
-        <tr>
-            <td><input class="button" type="button" value="7"onclick="insert(7)"></td>
-            <td><input class="button" type="button" value="8"onclick="insert(8)"></td>
-            <td><input class="button" type="button" value="9"onclick="insert(9)"></td>
-            <td><input class="button" type="button" value="-"onclick="insert('-')"></td>
-            <td ><input class="button" style="background: lawngreen"  type="button" value="Transl10"onclick="Transl10()"></td>
-        </tr>
-        <tr>
-            <td><input class="button" type="button" value="4"onclick="insert(4)"></td>
-            <td><input class="button" type="button" value="5"onclick="insert(5)"></td>
-            <td><input class="button" type="button" value="6"onclick="insert(6)"></td>
-            <td><input class="button" type="button" value="+"onclick="insert('+')"></td>
-            <td ><input class="button" style="background: lawngreen" type="button" value="abs"onclick="abs()"></td>
-        </tr>
-        <tr>
-            <td><input class="button" type="button" value="1"onclick="insert(1)"></td>
-            <td><input class="button" type="button" value="2"onclick="insert(2)"></td>
-            <td><input class="button" type="button" value="3" onclick="insert(3)"></td>
-            <td rowspan="5"><input class="button" style="height:128" type="button" value="="onclick="equal()"></td>
-            <td ><input class="button" style="background: lawngreen" type="button" value="log10"onclick="log10()"></td>
-        </tr>
-        <tr>
-            <td><input class="button" type="button" value="0"onclick="insert(0)"></td>
-            <td><input class="button" type="button" value="."onclick="insert('.')"></td>
-            <td ><input class="button" style="background: greenyellow" id="task"  type="button" value="prompt"onclick="task1()"></td>
-            <td ><input class="button" style="background: lawngreen"  type="button" value="Transl8"onclick="Transl8()"></td>
-        </tr>
-    </table>
-</div>
-    </body>
+ </script>
+</head>
+<body>
+<h1>Калькулятор</h1>
+<form>
+ <label>Введите первое число</label>
+ <input type="number" id="ch1" autofocus> 
+ <input class="button" style="background: greenyellow" id="task11"  type="button" value="prompt"onclick="task1()">
+ <br>
+ <label>Введите второе число</label>
+ <input type="number" id="ch2">
+ <input class="button" style="background: greenyellow" id="task22"  type="button" value="prompt"onclick="task2()">
+ <br>
+ <label>Выберите операцию</label>
+ <select id="znak">
+ <option name="sum">+</option>
+ <option name="raz">-</option>
+ <option name="mul">*</option>
+ <option name="div">/</option>
+ </select>
+ <br>
+ <label>Результат</label>
+ <input type="number" id="ch3">
+ <br>
+ <input type="button" value="Результат" onclick="calc();">
+ <br>
+ <input type="reset" value="Очистить">
+</form>
+</body>
 </html>
