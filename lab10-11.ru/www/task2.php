@@ -46,31 +46,15 @@
         print_r($txt2ed);
         echo "</br>";
 
-        if($txt1ed > $txt2ed)
+        if((abs($txt1ed - $txt2ed)) %2) == 0)
         {
-            $a=$txt1ed - $txt2ed;
-            if(abs($a %2) == 0)
-            {
-                echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
-            }
-            else
-            {
-                echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
-            }
-            
+            echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
         }
         else
         {
-            $a=$txt2ed - $txt1ed;
-            if(abs($a %2) == 0)
-            {
-                echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
-            }
-            else
-            {
-                echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
-            }
+            echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
         }
+ 
     ?>
 </body>
 </html>

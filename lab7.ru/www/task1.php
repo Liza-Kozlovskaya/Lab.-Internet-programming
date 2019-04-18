@@ -35,17 +35,21 @@
 
         function getSum ($a) 
         {
-            function negative($int) 
+            $sum = 0;
+            foreach ( $a as $val )
             {
-                return ($int < 0);
-           }
-           var_dump(array_sum(array_filter($a, "negative")));
+                if($val < 0)
+                {
+                    $sum += $val;
+                }
+            }
+            return $sum;
         }
 
         function start()
         {
-            $A = $_POST["numberA2"];
-            $B = $_POST["numberB2"];
+            $A = $_POST["numberA"];
+            $B = $_POST["numberB"];
 
             generation_array($array, $A, $B);
             echo "Массив: ";

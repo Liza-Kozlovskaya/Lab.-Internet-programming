@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+        <script>
+            function checkCorrect()
+            {
+                var password = document.getElementById("password").value;
+                var passwordRepeat = document.getElementById("passwordRepeat").value;
+                var name = document.getElementById("name").value;
+                var age = document.getElementById("age").value;
+                var email = document.getElementById("email").value;
+                if(password != "" && password != "" && name != "" && age != "" && email != "")
+                {
+                    alert("Вы ввели корректные данные");
+                    if(password == passwordRepeat)
+                    {
+                        alert("Ваши данные приняты");
+                        message();
+                    }
+                    else
+                    {
+                        alert("Пароли не совпадают");
+                    }
+                }
+                else
+                {
+                    alert("Вы ввели некорректные данные");
+                }
+            }
+            function message()
+            {
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                alert("Вы были зарегистрированы. Добро пожаловать\n"+name+","+email+".");
+            }
+        </script>
+    </head>
+    <body>
+        <html>
+            <head>
+            </head>
+            <body>
+                <h2>Вариант 1</h2><br>  
+                <form autocomplete="on" method=POST> 
+                     <br>  
+                     Имя: <br><input type="text" name="name" id="name" autofocus required><br>    
+                     Возраст: <br><input type="number" name="age" id="age" min="1" required><br>
+                     Логин: <br><input type="email" name="email" id="email"  required><br> 
+                     Пароль: <br><input type="password" id="password" name="password"  required><br> 
+                     Повторите Пароль: <br><input type="password" id="passwordRepeat" name="password2"  required><br> 
+                    </br>         
+                    <input type=submit value="Отправить" onclick="checkCorrect()">         
+                    <input type=reset value="Отменить" id="reset"> 
+                </form> 
+            </body>
+        </html>
+    </body>
+</html>

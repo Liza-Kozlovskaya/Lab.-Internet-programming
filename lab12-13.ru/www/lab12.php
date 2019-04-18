@@ -35,10 +35,107 @@
     function DeleteNumberInAllFile()
     {
         $dir = $_POST['dir'];
-        foreach (glob("$dir/*.txt") as $filename) 
+        if(file_exists($dir)) //проверка на существование директории
         {
-            echo "<h3> $filename </h3>";
+            foreach (glob("$dir/*.txt") as $filename) 
+            {
+                echo "<h3> $filename </h3>";
                             //file читаем содержимое файла в массив
+                $data = file($filename, FILE_IGNORE_NEW_LINES); //FILE_IGNORE_NEW_LINES- отбрасываем перевод на новую строку
+                //print_r($data);
+                echo "<p> Данные в файле: </p>";
+                $text = file_get_contents($filename);
+                echo nl2br(htmlspecialchars($text));
+                                
+                $patt = '~^(?:0\.(?:\d{1,2})?[1-9]|0\.(?:\d[1-9]|[1-9]\d)0|1(?:\.0{2}[01])?)$~';
+                $data = array_filter(preg_replace($patt, '', $data));
+                //print_r($data);
+                echo "<p> Данные в файле после удаления вещественных чисел: </p>";
+                file_put_contents($filename, join(PHP_EOL, $data)); //join объединяет элементы массива в строку
+                                                                //PHP_EOL признак конца строки ИЛИ " "
+                                                                //file_put_contents записывает данные в файл
+                $text2 = file_get_contents($filename);
+                echo nl2br(htmlspecialchars($text2));
+                echo "<br>";
+            }
+        }
+        else
+        {
+            echo "Такой директории как $dir не существует";
+        }
+    }
+
+    function AddFile()
+    {
+        $dir = $_POST['dir'];
+        $file1 = $_POST['new_file_1'];
+        $file2 = str_replace(' ', '', $file1); //удаляются из название все пробелы
+        $file = preg_replace("/(?!.,[.=$'€%-])\p{P}/u", "", $file2);
+        
+
+        if($file != "")
+        {
+            $new_file= $file.".txt";
+            if(file_exists($dir)) //проверка на существование директории
+            {
+                if(!file_exists($dir.$new_file)) //проверка на не существование такого файла
+                {
+                    $text = $_POST['new_file']; //запись из textarea данных пользователя в файл
+                    $fp = fopen($dir.$new_file, "w");
+                    fwrite($fp, $text);
+                    fclose($fp);
+                    echo "Файл $new_file был создан!";
+                }
+                else
+                {
+                    echo "Такой файл уже существует!";
+                }
+            }
+            else
+            {
+                echo "Такой директории как $dir не существует";
+            }
+        }
+        else
+        {
+            echo("Невозможно создать такой файл");
+        }
+
+        
+        
+    }
+
+    function DeleteFile()
+    {
+        $dir = $_POST['dir'];
+        $delete_file = $_POST['delete_file_1'].".txt";
+        $path = $dir.$delete_file;
+
+        if(file_exists($dir)) //проверка на существование директории
+        {
+            if(file_exists($path))
+            {
+                unlink($path);
+                echo "Файл $path был удалён!";
+            }
+            else
+            {
+                echo "Такого файла не существует!";
+            }
+        }
+        else
+        {
+            echo "Такой директории как $dir не существует";
+        }
+    }
+
+    function DeleteNumber()
+    {
+        $dir = $_POST['dir'];
+        $filename = $_POST['delete_number'].".txt";
+
+        if(file_exists($dir) && file_exists($filename)) //проверка на существование директории
+        {
             $data = file($filename, FILE_IGNORE_NEW_LINES); //FILE_IGNORE_NEW_LINES- отбрасываем перевод на новую строку
             //print_r($data);
             echo "<p> Данные в файле: </p>";
@@ -56,64 +153,10 @@
             echo nl2br(htmlspecialchars($text2));
             echo "<br>";
         }
-    }
-
-    function AddFile()
-    {
-        $dir = $_POST['dir'];
-        $new_file= $_POST['new_file_1'].".txt";
-
-        if(!file_exists($dir.$new_file))
-        {
-            $text = $_POST['new_file']; //запись из textarea данных пользователя в файл
-            $fp = fopen($dir.$new_file, "w");
-            fwrite($fp, $text);
-            fclose($fp);
-            echo "Файл $new_file был создан!";
-        }
         else
         {
-            echo "Такой файл уже существует!";
+            echo "Такой директории как $dir не существует";
         }
-    }
-
-    function DeleteFile()
-    {
-        $dir = $_POST['dir'];
-        $delete_file = $_POST['delete_file_1'].".txt";
-        $path = $dir.$delete_file;
-        if(file_exists($path))
-        {
-            unlink($path);
-            echo "Файл $path был удалён!";
-        }
-        else
-        {
-            echo "Такого файла не существует!";
-        }
-    }
-
-    function DeleteNumber()
-    {
-        $dir = $_POST['dir'];
-        $filename = $_POST['delete_number'].".txt";
-
-        $data = file($filename, FILE_IGNORE_NEW_LINES); //FILE_IGNORE_NEW_LINES- отбрасываем перевод на новую строку
-            //print_r($data);
-            echo "<p> Данные в файле: </p>";
-            $text = file_get_contents($filename);
-            echo nl2br(htmlspecialchars($text));
-                                
-            $patt = '~^(?:0\.(?:\d{1,2})?[1-9]|0\.(?:\d[1-9]|[1-9]\d)0|1(?:\.0{2}[01])?)$~';
-            $data = array_filter(preg_replace($patt, '', $data));
-            //print_r($data);
-            echo "<p> Данные в файле после удаления вещественных чисел: </p>";
-            file_put_contents($filename, join(PHP_EOL, $data)); //join объединяет элементы массива в строку
-                                                                //PHP_EOL признак конца строки ИЛИ " "
-                                                                //file_put_contents записывает данные в файл
-            $text2 = file_get_contents($filename);
-            echo nl2br(htmlspecialchars($text2));
-            echo "<br>";
     }
 
     function UpdatePage()

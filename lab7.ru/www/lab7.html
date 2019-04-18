@@ -3,16 +3,30 @@
     </head>
     <body>
         <center>
-            <form action="task2.php" autocomplete="on" method="POST">
+            <h1>Lab work 7</h1>
+            <h3>Способ 1</h3>
+            <form action="task1.php" autocomplete="on" method="POST">
                     <p>Задать два числа: </br>
-                        Number A <input type="number" min="1" max="30" name="numberA">
-                        Number B <input type="number" min="1" max="30" name="numberB">
+                        Number A <input type="number" min="1" max="1" name="numberA" required>
+                        Number B <input type="number" min="2" max="100" name="numberB" required>
                     </p>
                     <p>
-                        <input type="submit" value="Отправить">
+                        <input type="submit" value="Способ 1">
                         <input type="reset" value="Очистить">
                     </p>
                 </form>
+                <br>
+            <h3>Способ 2</h3>
+            <form action="task2.php" autocomplete="on" method="POST">
+                    <p>Задать два числа: </br>
+                        Number A <input type="number" min="1" max="1" name="numberA2" required>
+                        Number B <input type="number" min="2" max="100" name="numberB2" required>
+                    </p>
+                    <p>
+                        <input type="submit" value="Способ 2">
+                        <input type="reset" value="Очистить">
+                    </p>
+            </form>
         </center>
     </body>
 </html>

@@ -1,0 +1,32 @@
+input:valid 
+{
+     border-color: green;
+}
+
+input:invalid 
+{
+    border-color: red;
+}
+form
+{
+    text-align: center;
+    position: fixed; top: 20%; left: 39%;
+}
+
+body
+{
+    background: linear-gradient(rgba(138, 250, 194, 0.041), #098d6c81);
+}
+h2
+{
+    color: rgb(14, 144, 167);
+    position: fixed; 
+    left: 39%;
+    font-style: italic;
+    font-size: 40px;
+}
+#reset
+{
+    color: rgb(0, 0, 0);
+    background: #16bee788;
+}

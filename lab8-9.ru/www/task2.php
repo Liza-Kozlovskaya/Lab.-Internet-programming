@@ -1,64 +1,91 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Task 2, Lab8-9</title>
-</head>
 <body>
-    <?php
-        
-        $first_name = ($_POST['first_name']);
-        $last_name = ($_POST['last_name']);
-        //делим текст по пробелам и создаём массив слов
-        $work = ($_POST['work']);
-        $editwork =explode(' ',$work);
-        //разбиваем массив на 2 части
-        //ceil переводит нечётный элемент в 1 массив
-        $editwork=array_chunk($editwork,ceil(count($editwork)/2));
-        //print_r($editwork);
-        $array1 = count($editwork[0]);
-        $array2 = count($editwork[1]);
-        if($array1>$array2)
-        {
-            echo "Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
-        }
-        else
-        {
-            echo "Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
-        }
+<form action="task2.php" autocomplete="on" method=POST> 
+<p>Задать два числа: 
+    Number A <input type="number" min="1" max="20" name="A" required>
+    Number B <input type="number" min="1" max="20" name="B" required>
+    <input type="submit" value="Отправить">
+    <input type="reset" value="Очистить">
+</form>
+<?php
 
-        /*******************************************************************/
-        echo "Первая часть: $array1 слов.</br>";
-        echo "Вторая часть: $array2 слов.</br>";
-        print_r($editwork);
-        $a = iconv_strlen($work);
-        echo "</br> Количество всех символов: $a. </br>";
-        echo "Делим текст на 2 части по символам: ";
-        $b= str_split($work, $a/2);
-        print_r($b);
-        $ar1 = $b[0];
-        $ar2 = $b[1];
-        echo "</br> Первая часть текста: ";
-        print_r($ar1);
-        echo "</br> Количество символов в первой части: ";
-        $conv1 = iconv_strlen($ar1);
-        print_r($conv1);
-        echo "</br> Вторая часть текста:";
-        echo $ar2;
-        echo "</br> Количество символов во второй части: ";
-        $conv2 = iconv_strlen($ar2);
-        echo $conv2;
-        $part1 = count($ar1);
-        $part2 = count($ar2);
-        if($part1>$part2 or $part1<$part2)
-        {
-            echo "</br> Добрый день, $first_name $last_name. Вы были приняты на работу!</br>";
-        }
-        else
-        {
-            echo "</br> Добрый день, $first_name $last_name. Мы сожалеем, но вы не были приняты на работу!</br>";
-        }
+    start();
 
-    ?>
+    function search_sum($array) //подсчёт суммы в каждой строчке матрицы
+    {
+        $result = array();
+        for($i=0; $i<count($array); $i++)
+        {
+            echo 'Сумма элементов '.($i+1).'-го массива равна '.array_sum($array[$i]).'<br>';
+            array_push($result, array_sum($array[$i])); //добавляем в массив сумму каждой строки
+        }
+    }
+
+    function buble_sort(&$result) //сортировка пузырьком
+    {
+        for($j=0; $j < count($result) -1; $j++)
+        {
+            for($i=0; $i < count($result) - $j -1; $i++)
+            {
+                if(array_sum($result[$i]) > array_sum($result[$i +1]))
+                {
+                    $tmp_var = $result[$i +1];
+                    $result[$i+1] = $result[$i];
+                    $result[$i] = $tmp_var;
+                }
+            }
+        }
+    }
+
+    function generation_matrix(&$array, $cols, $rows) //заполнение матрицы числами
+    {
+        for($i=0; $i<$rows; $i++)
+        {
+            for($j=0; $j<$cols; $j++)
+            { 
+                $array[$i][$j] = rand(0, 10);
+            }
+        } 
+        /*$array = array(
+            array(4, 5, 5, 2, 1),
+            array(2, 4, 5, 1, 3),
+            array(2, 7, 9, 3, 5),
+            array(4, 4, 3, 3, 7),
+            array(9, 2, 4, 7, 2));*/
+    }
+
+    function print_matrix($array) //вывод матрицы на экран
+    {
+        $result = "<table style=\"font-size: 20px;\">";
+        for($i = 0; $i < count($array); $i++)
+        {
+            $result .= "<tr>";
+            for ($j = 0; $j < count($array[0]); $j++) 
+            {
+                $result .= "<td align=\"right\"; width=\"30px\">";
+                $result .= $array[$i][$j];
+                $result .= "</td>";
+            }
+            $result .= "</tr>";
+        }
+        $result .= "</table>";
+        echo $result;
+    }
+
+
+    function start() //запуск программы
+    {
+        $A = $_POST['A'];
+        $B = $_POST['B'];
+        echo("<b>Начальная матрица: </b><br> ");
+        generation_matrix($array, $A, $B);
+        print_matrix($array);
+        echo("<b>Сумма каждой строки начальной матрицы: </b><br>");
+        search_sum($array);
+        echo("<b>Итоговая матрица: </b><br>");
+        buble_sort($array);
+        print_matrix($array);
+    }
+?>
 </body>
 </html>
